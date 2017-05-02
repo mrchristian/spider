@@ -1,0 +1,104 @@
+Wikipedia - data access, how to
+
+Using Python and Wikipedia module - it's a bit to simple to do what I want.
+
+Go to for instruction on installing and using a simple Wikimedia Python API library https://pypi.python.org/pypi/wikipedia/
+
+Install:
+
+$ pip install wikipedia
+
+$ /usr/bin/python
+
+>>> import wikipedia
+
+ctrl D to escape
+
+To extract and store the following; page title, images and associated metadata do the following.
+
+Using this help documentation https://wikipedia.readthedocs.io/en/latest/quickstart.html
+
+wikipedia.page
+
+wikipedia.page enables you to load and access data from full Wikipedia pages. Initialize with a page title (keep in mind the errors listed above), and then access most properties using property methods:
+
+load page:
+
+>>> tib = wikipedia.page("German_National_Library_of_Science_and_Technology")
+
+Page title:
+
+>>> tib.title
+u'German National Library of Science and Technology'
+
+>>> tib.images
+[u'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg', u'https://upload.wikimedia.org/wikipedia/commons/c/c3/German_National_Library_of_Science_and_Technology_TIB_university_library_Hannover_UB_Am_Welfengarten_1b_Nordstadt_Hannover_Germany_03.jpg', u'https://upload.wikimedia.org/wikipedia/commons/d/db/TIB_Logo_DE_325px.png']
+
+end
+
+###
+
+Using wptools
+
+https://github.com/siznax/wptools/wiki/Install
+
+pip install wptools
+
+TITLE
+
+>>> import wptools
+>>> f = wptools.page("German_National_Library_of_Science_and_Technology")
+German_National_Library_of_Science_and_Technology (en)
+{
+  lang: en
+  title: German_National_Library_of_Science_and_Technology
+}
+
+PAGE
+
+p = wptools.page("German_National_Library_of_Science_and_Technology").get()
+
+
+
+IMAGE
+
+>>> p = wptools.page("German_National_Library_of_Science_and_Technology").get_parse()
+German_National_Library_of_Science_and_Technology (en)
+{
+  lang: en
+  title: German_National_Library_of_Science_and_Technology
+}
+en.wikipedia.org (parse) German_National_Library_of_Science_and_Technology
+en.wikipedia.org (imageinfo) File:German National Library of Science and...
+German_National_Library_of_Science_and_Technology (en)
+{
+  cache: <dict(2)> {imageinfo, parse}
+  images: <list(1)>
+  infobox: <dict(21)> {caption, collection_size, country, criteria, ...
+  lang: en
+  links: https://commons.wikimedia.org/wiki/Category:Technische_Informationsbibliothek_(Hannover)
+  pageid: 35916736
+  parsetree: <str(20822)> <root><template><title>Infobox library</ti...
+  title: German_National_Library_of_Science_and_Technology
+  wikibase: Q2399120
+  wikidata_url: https://www.wikidata.org/wiki/Q2399120
+  wikitext: <str(16209)> {{Infobox library| library_name = Technisch...
+}
+
+--
+
+end
+
+New approach:
+
+Scrapy
+
+install
+https://doc.scrapy.org/en/latest/intro/install.html
+
+tutorial
+https://doc.scrapy.org/en/latest/intro/tutorial.html
+
+To get page title, image file and image metadata and save as JSON.
+
+Target page https://en.wikipedia.org/wiki/German_National_Library_of_Science_and_Technology
